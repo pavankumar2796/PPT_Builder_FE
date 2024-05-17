@@ -13,10 +13,10 @@
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit">Login</button>
         </form>
-        <p class="pswd"><a href="#">Forgot password?</a></p>
+        <p class="pswd" (click)="openForgotPasswordDialog()">Forgot password?</p>
       </mat-card-content>
       <mat-card-actions>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
       </mat-card-actions>
     </mat-card>
   </div>

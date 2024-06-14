@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component,Inject,OnInit,OnDestroy } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,24 +7,36 @@ import { Router } from '@angular/router';
   templateUrl: './emailotpverification.component.html',
   styleUrls: ['./emailotpverification.component.css']
 })
-export class EmailotpverificationComponent {
+export class EmailotpverificationComponent implements OnInit, OnDestroy {
 
-  otp: string = '';
+  otp: BigInt = BigInt(0);
   timer: number = 60;
   timerInterval: any;
 
-  constructor(public dialogRef: MatDialogRef<EmailotpverificationComponent>, private router: Router) { }
+  constructor(
+    private router: Router,
+    public dialogRef: MatDialogRef<EmailotpverificationComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  ngOnInit(): void {
+    this.startTimer();
+  }
+
+  ngOnDestroy(): void {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
 
   verifyOTP() {
-    // Add logic to verify OTP
-    // You can communicate back to the parent component using the dialogRef
-    this.router.navigate(['/login']);
     this.dialogRef.close({ action: 'verify', otp: this.otp });
+
+    this.router.navigate(['/signup']);
   }
 
   resendOTP() {
-    // Add logic to resend OTP
-    // You can communicate back to the parent component using the dialogRef
+    this.resetTimer();
     this.dialogRef.close({ action: 'resend' });
   }
 
@@ -38,4 +50,11 @@ export class EmailotpverificationComponent {
     }, 1000);
   }
 
+  resetTimer() {
+    this.timer = 60;
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+    this.startTimer();
+  }
 }

@@ -1,1 +1,13 @@
-<p>splitfile works!</p>
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <form class="upload-form" (ngSubmit)="onSplitFile()">
+                <mat-form-field appearance="outline">
+                    <input type="file" (change)="onFileSelected($event)">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Split</button>
+            </form>
+            <p class="info-text">File split into {{ numSlides }} slides. <a href="/metadata">Click here to save</a></p>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,61 @@
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-otpverifypswd',
+  templateUrl: './otpverifypswd.component.html',
+  styleUrls: ['./otpverifypswd.component.css']
+})
+export class OtpverifypswdComponent {
+
+  otp: BigInt = BigInt(0);
+  timer: number = 60;
+  timerInterval: any;
+
+  constructor(
+    private router: Router,
+    public dialogRef: MatDialogRef<OtpverifypswdComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  ngOnInit(): void {
+    this.startTimer();
+  }
+
+  ngOnDestroy(): void {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
+
+  verifyOTP() {
+    this.dialogRef.close({ action: 'verify', otp: this.otp });
+
+    this.router.navigate(['/reset']);
+  }
+
+  resendOTP() {
+    this.resetTimer();
+    this.dialogRef.close({ action: 'resend' });
+  }
+
+  startTimer() {
+    this.timerInterval = setInterval(() => {
+      if (this.timer > 0) {
+        this.timer--;
+      } else {
+        clearInterval(this.timerInterval);
+      }
+    }, 1000);
+  }
+
+  resetTimer() {
+    this.timer = 60;
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+    this.startTimer();
+  }
+
+}

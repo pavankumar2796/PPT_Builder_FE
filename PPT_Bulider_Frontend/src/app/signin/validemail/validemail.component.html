@@ -7,7 +7,7 @@
       <p>We will send you a one-time password to this Email Address</p>
       <form class="text-center" (submit)="openOTPDialog()">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Email" type="email" name="email">
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="email" required>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Send OTP</button>
       </form>

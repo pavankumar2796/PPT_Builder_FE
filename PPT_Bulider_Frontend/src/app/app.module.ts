@@ -16,6 +16,17 @@ import { EmailotpverificationComponent } from './signin/emailotpverification/ema
 import { SignupComponent } from './signin/signup/signup.component';
 import { ForgetpswdComponent } from './signin/forgetpswd/forgetpswd.component';
 import { SplitfileComponent } from './components/splitfile/splitfile.component';
+import { MetadataComponent } from './components/metadata/metadata.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResetpswdComponent } from './signin/resetpswd/resetpswd/resetpswd.component';
+import { OtpverifypswdComponent } from './signin/otpverifypswd/otpverifypswd/otpverifypswd.component';
 
 @NgModule({
   declarations: [
@@ -25,20 +36,33 @@ import { SplitfileComponent } from './components/splitfile/splitfile.component';
     EmailotpverificationComponent,
     SignupComponent,
     ForgetpswdComponent,
-    SplitfileComponent
+    SplitfileComponent,
+    MetadataComponent,
+    ResetpswdComponent,
+    OtpverifypswdComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,6 +10,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+node_modules/bootstrap/
+node_modules/popper.js/
+node_modules/@popperjs
 
 # IDEs and editors
 .idea/
@@ -40,3 +43,16 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Popper files
+popper.js
+popper.min.js
+
+# Bootstrap bundles
+bootstrap.bundle.js
+bootstrap.bundle.min.js
+
+# Package and JSON files
+package-lock.json
+yarn.lock
+

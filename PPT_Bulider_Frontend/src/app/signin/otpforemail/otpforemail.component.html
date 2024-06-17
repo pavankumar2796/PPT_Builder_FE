@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Enter OTP</h2>
+<mat-dialog-content>
+  <p>OTP sent to {{ data.email }}</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Enter OTP" [(ngModel)]="otp">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="verifyOTP()">Verify OTP</button>
+</mat-dialog-actions>

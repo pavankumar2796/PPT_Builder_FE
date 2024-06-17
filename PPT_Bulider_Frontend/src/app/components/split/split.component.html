@@ -1,0 +1,17 @@
+<div class="container">
+    <mat-card>
+      <mat-card-content>
+        <form class="upload-form" (ngSubmit)="onSplitFile()">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose File</mat-label>
+            <input matInput placeholder="Select file" readonly>
+            <input type="file" style="display: none" (change)="onFileSelected($event)" #fileInput>
+            <button mat-button matSuffix (click)="fileInput.click()">Browse</button>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Split</button>
+        </form>
+        <p class="info-text" *ngIf="numSlides !== null">File split into {{ numSlides }} slides. <a routerLink="/metadata">Click here to save</a></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

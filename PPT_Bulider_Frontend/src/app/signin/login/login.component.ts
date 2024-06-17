@@ -10,21 +10,46 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent {
 
+  errorMessage: string | null = null;
+
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(form: NgForm): void {
-    const { email, password } = form.value;
-    this.authService.login({ userEmail: email, password }).subscribe(
-      (response: any) => { // Ensure response type matches the structure you're receiving
-        localStorage.setItem('authToken', response.data); // Store the token
-        this.router.navigate(['/split']);
-      },
-      error => {
-        console.error('Login failed', error);
-        alert('Login failed');
+    if (form.valid) {
+      const { email, password } = form.value;
+      if (!email.match(/.+@ecanarys\.com$/)) {
+        this.errorMessage = 'Please enter a valid email address from ecanarys.com domain.';
+        return;
       }
-    );
+      this.authService.login({ userEmail: email, password }).subscribe(
+        (response: any) => {
+          if (response.data) {
+            localStorage.setItem('authToken', response.data);
+            console.log('AuthToken:', response.data);
+            this.router.navigate(['/split']);
+          } else {
+            this.errorMessage = 'Email not registered. Please sign up.';
+          }
+        },
+        error => {
+          console.error('Error during login', error);
+          this.errorMessage = 'Login failed. Please check your email and password.';
+        }
+      );
+    } else {
+      this.errorMessage = 'Please enter a valid email address and password.';
+    }
   }
-  
+
+  getLoginEmailErrorMessage(form: NgForm): string {
+    const emailControl = form.controls['email'];
+    if (emailControl.errors?.['required']) {
+      return 'Email is required.';
+    } else if (emailControl.errors?.['pattern']) {
+      return 'Email must be in the format ...@ecanarys.com.';
+    } else {
+      return 'Invalid email address.';
+    }
+  }
 
 }

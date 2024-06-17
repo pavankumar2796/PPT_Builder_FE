@@ -1,4 +1,8 @@
-<div class="container">
+<div class="main">
+  <div class="header">
+    <p>PPT Builder</p>
+  </div>
+  <div class="container">
     <mat-card>
       <mat-card-header class="heading">
         <mat-card-title>Login</mat-card-title>
@@ -6,18 +10,21 @@
       <mat-card-content>
         <form class="text-center" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Email" type="email" name="email" ngModel required>
+            <input matInput placeholder="Email" type="email" name="email" ngModel required pattern=".+@ecanarys\.com">
+            <mat-error *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched">
+              {{ getLoginEmailErrorMessage(loginForm) }}
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <input matInput placeholder="Password" type="password" name="password" ngModel required>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit">Login</button>
         </form>
-        <!-- <p class="pswd" (click)="openForgotPasswordDialog(loginForm.value.email)">Forgot password?</p> -->
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
       </mat-card-content>
       <mat-card-actions>
         <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
       </mat-card-actions>
     </mat-card>
   </div>
-  
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+    <mat-card>
+      <mat-card-header class="heading">
+        <mat-card-title>Search Results for Query</mat-card-title>
+   
+        <div class="sort-dropdown">
+          <mat-form-field appearance="outline">
+            <mat-label>Sort by</mat-label>
+            <mat-select placeholder="Select an option" [(value)]="selectedSortOption">
+              <mat-option *ngIf="selectedSortOption === null" [value]="null">Select an option</mat-option>
+              <mat-option value="Date">Date</mat-option>
+              <mat-option value="Rating">Rating</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+   
+        <div class="sort-by-ratings" *ngIf="selectedSortOption === 'Rating'">
+          <!-- <p>Sort by Ratings:</p> -->
+          <div class="rating-stars">
+            <!-- <mat-icon *ngFor="let star of stars" (click)="setRating(star)" [ngClass]="{'star-filled': star <= selectedRating}">star</mat-icon> -->
+          </div>
+          <p *ngIf="selectedRating">Selected Rating: {{ selectedRating }}</p>
+        </div>
+   
+        <div class="result-row" *ngFor="let result of results; let i = index">
+          <div class="col-lg-4">
+            <p class="slide-number">{{ result.name }}</p>
+            <img [src]="result.imageUrl" alt="Slide Image" class="slide-photo">
+          </div>
+          <div class="col-lg-4">
+            <p class="slide-title">{{ result.title }}</p>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Title</mat-label>
+              <input matInput [(ngModel)]="result.title" placeholder="Title">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Notes</mat-label>
+              <textarea matInput [(ngModel)]="result.notes" placeholder="Notes"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4 text-center">
+            <mat-checkbox [(ngModel)]="result.selected">Select</mat-checkbox>
+   
+            <p *ngIf="selectedSortOption === 'Date' && result.date">{{ result.date }}</p>
+   
+            <p *ngIf="selectedSortOption === 'Rating' && result.rating">Rating: {{ result.rating }}</p>
+          </div>
+        </div>
+   
+   
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="button" class="mergebtn" (click)="onMerge()">Merge</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -14,31 +14,31 @@ export class OtpforemailComponent {
 
   constructor(
     public dialogRef: MatDialogRef<OtpforemailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private authService: AuthService,
-    private router: Router
+    @Inject(MAT_DIALOG_DATA) public data: { email: string },
+    private authService: AuthService
   ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  verifyOTP(): void {
-    const verifyData = { email: this.data.email, otp: this.otp };
+  verifyOtp() {
+    const verifyData = {
+      email: this.data.email,
+      otp: this.otp
+    };
     this.authService.verifyOtp(verifyData).subscribe(
       response => {
-        alert('OTP verified successfully');
-        this.dialogRef.close();
-        this.router.navigate(['/signup']);
+        if (response.status === 200) {
+          alert('OTP verified successfully');
+          this.dialogRef.close(true); // Set the result to true on successful verification
+        } else {
+          alert('OTP verification failed');
+        }
       },
       error => {
-        if (error.status === 409) { // Assuming 409 conflict status for already signed up users
-          alert('User already signed up. Redirecting to login page.');
-          this.dialogRef.close();
-          this.router.navigate(['/login']);
-        } else {
-          console.error('Error verifying OTP', error);
-        }
+        console.error('Error verifying OTP', error);
+        alert('OTP verification failed');
       }
     );
   }

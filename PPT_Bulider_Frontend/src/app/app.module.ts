@@ -12,26 +12,29 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-import { VerifyemailComponent } from './signin/verifyemail/verifyemail.component';
 import { OtpforemailComponent } from './signin/otpforemail/otpforemail.component';
 import { SignupComponent } from './signin/signup/signup.component';
 import { LoginComponent } from './signin/login/login.component';
 import { SplitComponent } from './components/split/split.component';
 import { MetadataComponent } from './components/metadata/metadata.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchresultComponent } from './components/searchresult/searchresult.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VerifyemailComponent,
     OtpforemailComponent,
     SignupComponent,
     LoginComponent,
     SplitComponent,
-    MetadataComponent
+    MetadataComponent,
+    SearchComponent,
+    SearchresultComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,9 @@ import { MetadataComponent } from './components/metadata/metadata.component';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    NgxDocViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

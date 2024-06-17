@@ -1,0 +1,88 @@
+:host {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+      linear-gradient(45deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+      linear-gradient(-45deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+    background-size: 30px 30px;
+    
+  }
+   
+  .container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 80%;
+  }
+   
+  .heading {
+    text-align: center;
+  }
+   
+  .result-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+   
+  .slide-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+  }
+   
+  .slide-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+   
+  .full-width {
+    width: 100%;
+  }
+   
+  button[type="button"] {
+    margin-top: 10px;
+  }
+   
+ 
+   
+  .mat-checkbox {
+    margin-top: 10px;
+  }
+   
+  .mergebtn {
+    color: white;
+  }
+  .sort-by-date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }
+   
+  .sort-dropdown {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    z-index: 1000;
+  }
+   
+  .wide-dropdown {
+    width: 200px;
+  }
+   
+  .date-picker {
+    margin-top: 55px;
+  }
+   
+  .container {
+    position: relative;
+  }

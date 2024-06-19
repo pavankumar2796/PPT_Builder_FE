@@ -23,7 +23,11 @@ import { SplitComponent } from './components/split/split.component';
 import { MetadataComponent } from './components/metadata/metadata.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchresultComponent } from './components/searchresult/searchresult.component';
-import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { TestpptComponent } from './components/testppt/testppt.component';
+import { ForgetpaswdComponent } from './signin/forgetpaswd/forgetpaswd.component';
+import { OtpverifypswdComponent } from './signin/otpverifypswd/otpverifypswd.component';
+import { ResetpswdComponent } from './signin/resetpswd/resetpswd.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     SplitComponent,
     MetadataComponent,
     SearchComponent,
-    SearchresultComponent
+    SearchresultComponent,
+    TestpptComponent,
+    ForgetpaswdComponent,
+    OtpverifypswdComponent,
+    ResetpswdComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +60,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatSelectModule,
-    NgxDocViewerModule
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,6 +21,7 @@
           <button mat-raised-button color="primary" type="submit">Login</button>
         </form>
         <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <p class="pswd" (click)="openForgotPasswordDialog(loginForm.value.email)">Forgot password?</p>
       </mat-card-content>
       <mat-card-actions>
         <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>

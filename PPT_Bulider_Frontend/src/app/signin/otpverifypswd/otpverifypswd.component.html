@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>OTP Verification</h1>
+<div mat-dialog-content>
+    <p>Enter the OTP sent to your email address.</p>
+    <form class="text-center">
+        <mat-form-field appearance="outline">
+            <input matInput type="password" [(ngModel)]="otp" placeholder="Enter OTP" name="otp" maxlength="6">
+        </mat-form-field>
+        <p *ngIf="timer > 0">You can resend the OTP in {{ timer }} seconds.</p>
+        <button mat-raised-button color="primary" (click)="verifypswdOTP()">Verify OTP</button>
+        <mat-card-actions>
+            <p>
+                Haven't received the verification code?
+                <a href="#" (click)="resendOTP()" [ngClass]="{'disabled-link': timer > 0}"
+                    [attr.aria-disabled]="timer > 0 ? true : null">Resend</a>
+            </p>
+        </mat-card-actions>
+    </form>
+</div>

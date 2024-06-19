@@ -6,6 +6,8 @@ import { SignupComponent } from './signin/signup/signup.component';
 import { MetadataComponent } from './components/metadata/metadata.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchresultComponent } from './components/searchresult/searchresult.component';
+import { TestpptComponent } from './components/testppt/testppt.component';
+import { ResetpswdComponent } from './signin/resetpswd/resetpswd.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,12 @@ const routes: Routes = [
   },
   {
     path: 'searchresult', component: SearchresultComponent
+  },
+  {
+    path: 'test', component: TestpptComponent
+  },
+  {
+    path: 'reset', component: ResetpswdComponent
   }
 ];
 

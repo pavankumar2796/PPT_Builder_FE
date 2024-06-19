@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Forget Password</h1>
+<div mat-dialog-content>
+    <p>{{ email }}</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="frgtOTP()">SendOTP</button>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

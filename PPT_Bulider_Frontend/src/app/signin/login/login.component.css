@@ -102,9 +102,9 @@ html, body {
   }
    
   .pswd {
-    color: #3f51b5;
+    color: red;
     cursor: pointer;
-    text-align: center;
+    text-align: right;
     margin-top: 10px;
   }
    

@@ -1,84 +1,66 @@
 <div class="container">
-    <mat-card>
-      <mat-card-header class="heading">
-        <mat-card-title>Metadata for Uploaded File</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-lg-8">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div *ngFor="let item of carouselItems; let i = index" class="carousel-item" [class.active]="i === 0">
-                    <ngx-doc-viewer
-  [url]="doc"
-  viewer="google"
-  style="width:100%;height:50vh;"
-></ngx-doc-viewer>
-                  <!-- <img [src]="convertFilePath(item.locationOfFile)" class="d-block w-100" [alt]="item.fileName"
-                    style="height: 400px; width: 800px;"> -->
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>{{ item.fileName }}</h5>
-                    <p>{{ item.notes }}</p>
-                  </div>
-                </div>
+  <mat-card>
+    <mat-card-header class="heading">
+      <mat-card-title>Metadata for Uploaded File</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="carousel">
+        <div class="slides" [style.transform]="'translateX(-' + currentSlideIndex * 100 + '%)'">
+          <div class="slide" *ngFor="let iframeUrl of iframeUrls; let i = index" [class.active]="i === currentSlideIndex">
+            <div class="row">
+              <div class="col-lg-8">
+                <iframe [src]="iframeUrl" width="100%" height="600px" frameborder="0"></iframe>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+              <div class="col-lg-4 text-center">
+                <form #metadataForm="ngForm">
+                  <p>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Title</mat-label>
+                      <input matInput placeholder="Title" name="title" required>
+                    </mat-form-field>
+                  </p>
+                  <p>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Keywords</mat-label>
+                      <textarea matInput placeholder="Keywords" name="keywords" ngModel></textarea>
+                    </mat-form-field>
+                  </p>
+                  <p>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Notes</mat-label>
+                      <textarea matInput placeholder="Notes" name="notes" ngModel></textarea>
+                    </mat-form-field>
+                  </p>
+                  <!-- <p>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Choose a date</mat-label>
+                      <input matInput [matDatepicker]="picker" name="selectedDate" ngModel>
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </p>
+                  <div class="row text-center mt-2">
+                    <div class="col-lg-6">
+                      <mat-checkbox name="count" [(ngModel)]="metadataForm.value.count">Count</mat-checkbox>
+                    </div>
+                    <div class="col-lg-6">
+                      <mat-checkbox name="rating" [(ngModel)]="metadataForm.value.rating">Rating</mat-checkbox>
+                      <mat-icon>star</mat-icon>
+                    </div>
+                  </div> -->
+                  <div class="text-center mt-5">
+                    <button mat-raised-button color="primary" type="submit" class="savebtn" (click)="onSaveMetadata()">Save</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4 text-center">
-            <form (ngSubmit)="onSaveMetadata(metadataForm)" #metadataForm="ngForm">
-              <p>
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Title</mat-label>
-                  <input matInput placeholder="Title" name="title" ngModel required>
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Keywords</mat-label>
-                  <textarea matInput placeholder="Keywords" name="keywords" ngModel></textarea>
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Notes</mat-label>
-                  <textarea matInput placeholder="Notes" name="notes" ngModel></textarea>
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Choose a date</mat-label>
-                  <input matInput [matDatepicker]="picker" name="selectedDate" ngModel>
-                  <mat-hint>MM/DD/YYYY</mat-hint>
-                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </p>
-              <div class="row text-center mt-2">
-                <div class="col-lg-6">
-                  <mat-checkbox name="count" [(ngModel)]="metadataForm.value.count">Count</mat-checkbox>
-                </div>
-                <div class="col-lg-6">
-                  <mat-checkbox name="rating" [(ngModel)]="metadataForm.value.rating">Rating</mat-checkbox>
-                  <mat-icon>star</mat-icon>
-                </div>
-              </div>
-              <div class="text-center mt-5">
-                <button mat-raised-button color="primary" type="submit" class="savebtn">Save</button>
-              </div>
-            </form>
-          </div>
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+      </div>
+      <div class="text-center mt-5">
+        <button mat-raised-button color="accent" (click)="onSubmitAll()">Submit All</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

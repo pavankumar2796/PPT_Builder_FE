@@ -31,7 +31,7 @@ export class OtpforemailComponent {
       response => {
         if (response.status === 200) {
           alert('OTP verified successfully');
-          this.dialogRef.close(true); // Set the result to true on successful verification
+          this.dialogRef.close(true); 
         } else {
           alert('OTP verification failed');
         }

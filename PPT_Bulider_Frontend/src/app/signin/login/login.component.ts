@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/authorize/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ForgetpaswdComponent } from '../forgetpaswd/forgetpaswd.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent {
 
   errorMessage: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, public dialog: MatDialog) {}
 
   onLogin(form: NgForm): void {
     if (form.valid) {
@@ -39,6 +41,17 @@ export class LoginComponent {
     } else {
       this.errorMessage = 'Please enter a valid email address and password.';
     }
+  }
+
+  openForgotPasswordDialog(email: string): void {
+    const dialogRef = this.dialog.open(ForgetpaswdComponent, {
+      width: '400px',
+      data: { email }
+    });
+ 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   getLoginEmailErrorMessage(form: NgForm): string {
